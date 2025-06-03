@@ -1,9 +1,7 @@
-import {
-  Button
-} from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
-
+import { ReportDialog } from './Components/ReportDialog';
 
 const theme = createTheme({
   palette: {
@@ -16,17 +14,17 @@ const theme = createTheme({
   },
 });
 
-
-
 const App: React.FC = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
+  const [open, setOpen] = useState(false);
 
   return (
     <ThemeProvider theme={theme}>
-     <Button variant="contained" color="primary">
-      Click me
-     </Button>
+      <Box p={2}>
+        <Button variant="contained" color="error" onClick={() => setOpen(true)}>
+          Report a problem
+        </Button>
+        <ReportDialog open={open} onClose={() => setOpen(false)} />
+      </Box>
     </ThemeProvider>
   );
 };
